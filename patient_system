@@ -1,1 +1,99 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int main() {
+    string Name[100];
+    char Sex[100];
+    long Id[100], Phone[100];
+    int Age[100];
+    string name;
+
+    int choice;
+    int n = 0;   // number of patients
+
+    while (true) {
+        cout << "--------Main Menu--------" << endl;
+        cout << "1. Enter new patient." << endl;
+        cout << "2. View Patient." << endl;
+        cout << "3. View all patients." << endl;
+        cout << "4. Exit" << endl;
+        cin >> choice;
+        cin.ignore();
+
+        switch (choice) {
+
+        case 1:
+            if (n >= 100) {
+                cout << "Patient list is full." << endl;
+                break;
+            }
+
+            Id[n] = n + 1;
+
+            cout << "Enter patient's first and last name:" << endl;
+            getline(cin,Name[n]);
+
+            cout << "Enter patient's age:" << endl;
+            cin >> Age[n];
+
+            cout << "Enter patient's sex (M/F):" << endl;
+            cin >> Sex[n];
+
+            cout << "Enter patient's phone number:" << endl;
+            cin >> Phone[n];
+
+            n++;
+            break;
+
+        case 2: {
+            if (n == 0) {
+                cout << "No patients to display." << endl;
+                break;
+            }
+
+
+            cout << "Enter patient's name to view." << endl;
+            getline(cin,name);
+
+            bool found = false;
+
+            for (int i = 0; i < n; i++) {
+                if (name == Name[i]) {
+                    cout << "ID No: " << Id[i]
+                         << " | Patient's name: " << Name[i]
+                         << " | Age: " << Age[i]
+                         << " | Sex: " << Sex[i]
+                         << " | Phone number: " << Phone[i] << endl;
+
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                cout << "Patient not found." << endl;
+            }
+            break;
+        }
+
+        case 3:{
+            if(n==0)
+                cout<<"There are no patients."<<endl;
+            else{
+            for (int i = 0; i < n; i++){
+                    cout << "ID No: " << Id[i]<< " | Patient's name: " << Name[i]<< " | Age: " << Age[i]<< " | Sex: " << Sex[i]<< " | Phone number: " << Phone[i] << endl;}
+        }
+        }
+        break;
+
+
+        case 4:
+            return 0;
+
+        default:
+            cout << "Invalid input" << endl;
+        }
+    }
+}
 
